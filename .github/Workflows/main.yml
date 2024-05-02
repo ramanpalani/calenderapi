@@ -20,9 +20,9 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: D:\calender_api\Calender\Calendar.csproj
+      working-directory: D:\calender_api\Calender\Calendar.sln
 
     - name: Build
       run: dotnet build --configuration Release
-      working-directory: D:\calender_api\Calender\Calendar.csproj
+      working-directory: D:\calender_api\Calender\Calendar.sln
    
