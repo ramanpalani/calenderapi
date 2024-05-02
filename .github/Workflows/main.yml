@@ -20,8 +20,9 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: 'D:\\calender_api\\Calender'  # Path to your "calendar" directory
+      working-directory: D:\calender_api\Calender\Calendar.csproj
 
     - name: Build
       run: dotnet build --configuration Release
-      working-directory: 'D:\\calender_api\\Calender'   # Path to your "calendar" directory
+      working-directory: D:\calender_api\Calender\Calendar.csproj
+   
