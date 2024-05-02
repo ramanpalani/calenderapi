@@ -24,4 +24,4 @@ jobs:
 
     - name: Build
       run: dotnet build --configuration Release
-      working-directory: "D://test"
+      working-directory: "D://test/"
