@@ -1,0 +1,32 @@
+/* groovylint-disable-next-line CompileStatic */
+pipeline {
+    agent any
+    stages {
+        stage('Cleaning Docker System at start') {
+            steps {
+               sh "docker system prune -af"
+            }
+        }
+        stage('Login into image repository') {
+            steps {
+                sh 'docker login -u admin -p Pondy6578! docker.okit.in'
+            }
+        }
+        stage('Deleting Old Container') {
+            steps {
+                sh "docker-compose -f ./docker/docker-compose-deploy.yml down"
+            }
+        }
+        stage('Launching Container') {
+            steps {
+                sh "docker-compose -f ./docker/docker-compose-deploy.yml up -d"
+            }
+        }
+        stage('Cleaning Docker System at end') {
+            steps {
+               sh "docker system prune -af"
+            }
+        }
+    }
+
+}

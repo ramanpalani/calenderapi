@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  build_calendar_api:
+    container_name: build_calendar_api
+    build: ./../
+    image: calendar_api:1.0.1

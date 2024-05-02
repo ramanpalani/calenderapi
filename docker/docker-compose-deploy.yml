@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  calendar_api:
+    container_name: calendar_api
+    image: docker.okit.in/calendar_api:1.0.1
+    # environment:
+      # DOTNET_URLS: http://+:80
+    restart: unless-stopped
+    networks:
+      - proxy_net
+    # deploy:
+    #     resources:
+    #         limits:
+    #           cpus: 0.5
+    #           memory: 2G
+networks:
+  proxy_net:
+    external: true
