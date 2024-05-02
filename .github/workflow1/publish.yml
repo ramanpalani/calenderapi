@@ -2,7 +2,7 @@ name: Download Artifacts
 
 on:
   workflow_run:
-    workflows: ["workflows"]
+    workflows: ["workflows", "workflow1"]
     types:
       - completed
 
