@@ -18,6 +18,10 @@ jobs:
       with:
         dotnet-version: '7.0'
 
-    - name: Build project
-      run: |
-        dotnet build Calendar/Calendar.csproj
+    - name: Restore dependencies
+      run: dotnet restore
+      working-directory: calendar  # Path to your "calendar" directory
+
+    - name: Build
+      run: dotnet build --configuration Release
+      working-directory: calendar  # Path to your "calendar" directory
