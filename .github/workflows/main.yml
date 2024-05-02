@@ -20,4 +20,4 @@ jobs:
 
     - name: Build project
       run: |
-        dotnet build /Calendar/Calendar.csproj
+        dotnet build Calendar/Calendar.csproj
