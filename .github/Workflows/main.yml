@@ -1,13 +1,13 @@
-name: CI/CD
+name: Build
 
 on:
   push:
     branches:
-      - main
+      - main  # Adjust this to match your main branch
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-latest  # Use Windows virtual environment
 
     steps:
     - name: Checkout code
@@ -16,13 +16,12 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '7.0'
+        dotnet-version: '7.0'  # Adjust to your preferred .NET version
 
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: D:\calender_api\Calender\Calendar.sln
+      working-directory: D:\calender_api\Calender
 
     - name: Build
       run: dotnet build --configuration Release
-      working-directory: D:\calender_api\Calender\Calendar.sln
-   
+      working-directory: D:\calender_api\Calender
