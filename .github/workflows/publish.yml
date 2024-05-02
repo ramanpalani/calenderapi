@@ -1,0 +1,29 @@
+name Download Artifacts
+
+on
+  workflow_run
+    workflows [Build]
+    types
+      - completed
+
+jobs
+  download
+    runs-on windows-latest
+
+    steps
+    - name Download artifacts
+      uses actionsgithub-script@v5
+      with
+        script 
+          $response = Invoke-RestMethod -Uri httpsapi.github.comreposyour-usernameyour-repoactionsruns${{ github.event.workflow_run.id }}artifacts
+
+          $artifacts = $response.artifacts  Where-Object { $_.name -eq 'Release' }
+          if ($artifacts.Count -gt 0) {
+            $artifact = $artifacts[0]
+            $downloadUrl = $artifact.archive_download_url
+            $downloadPath = '.downloaded_artifacts'
+            Invoke-WebRequest -Uri $downloadUrl -OutFile $downloadPathRelease.zip
+            Write-Output 'Artifacts downloaded successfully.'
+          } else {
+            Write-Output 'No artifacts found to download.'
+          }
