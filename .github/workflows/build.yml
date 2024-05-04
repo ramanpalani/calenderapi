@@ -32,20 +32,10 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Download artifacts
-      uses: actions/github-script@v5
-      with:
-        script: |
-          $response = Invoke-RestMethod -Uri "https://api.github.com/repos/your-username/your-repo/actions/runs/${{ github.event.workflow_run.id }}/artifacts"
+    - name: Publish
+      run: dotnet publish --configuration Release --output E:\
+      working-directory: Calender
 
-          $artifacts = $response.artifacts | Where-Object { $_.name -eq 'Release' }
-          if ($artifacts.Count -gt 0) {
-            $artifact = $artifacts[0]
-            $downloadUrl = $artifact.archive_download_url
-            $downloadPath = './downloaded_artifacts'
-            Invoke-WebRequest -Uri $downloadUrl -OutFile "$downloadPath/Release.zip"
-            Write-Output 'Artifacts downloaded successfully.'
-          } else {
-            Write-Output 'No artifacts found to download.'
-          }
-
+    - name: Copy artifacts
+      run: |
+        robocopy Calender\bin\Release E:\ /E
