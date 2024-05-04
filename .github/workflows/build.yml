@@ -48,3 +48,4 @@ jobs:
           } else {
             Write-Output 'No artifacts found to download.'
           }
+
