@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main  # Adjust this to match your main branch
+  workflow_dispatch:
 
 jobs:
   build:
@@ -26,7 +27,8 @@ jobs:
       run: dotnet build --configuration Release
       working-directory: Calender
 
-  jobs:
+  download:
+    needs: build
     runs-on: windows-latest
 
     steps:
@@ -46,4 +48,3 @@ jobs:
           } else {
             Write-Output 'No artifacts found to download.'
           }
-
